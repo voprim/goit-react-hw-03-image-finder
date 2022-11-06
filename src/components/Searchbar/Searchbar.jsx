@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 // import PropTypes from 'prop-types';
-// import { Test } from './Searchbar.styles';
+import css from "./Searchbar.module.css";
 
 export class Searchbar extends PureComponent {
   state = { query: "" };
@@ -20,15 +20,15 @@ export class Searchbar extends PureComponent {
     const { query } = this.state;
 
     return (
-      <header className="Searchbar">
-        <form className="SearchForm" onSubmit={this.handleSubmit}>
-          <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">Search</span>
+      <header className={css.Searchbar}>
+        <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+          <button type="submit" className={css.SearchFormButton}>
+            <span className={css.SearchFormButtonLabel}>Search</span>
           </button>
 
           <input
             onChange={this.handleChange}
-            className="SearchForm-input"
+            className={css.SearchFormInput}
             value={query}
             type="text"
             autoComplete="off"

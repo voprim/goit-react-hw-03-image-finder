@@ -1,5 +1,5 @@
-//import "./App.css";
 import React, { Component } from "react";
+import css from "./App.module.css";
 
 import {fetchImagesApi} from "../services/images-api";
 
@@ -9,11 +9,6 @@ import {ImageGallery} from "./ImageGallery/ImageGallery";
 import {Button} from "./Button/Button";
 import {Modal} from "./Modal/Modal";
 import {Loader} from "./Loader/Loader";
-
-// https://pixabay.com/api/?q=что_искать&page=номер_страницы&key=твой_ключ&image_type=photo&orientation=horizontal&per_page=12
-
-//* const API = '21072245-3acfda09a1d5bc65070e6b336';
-//! https://pixabay.com/api/?key=21072245-3acfda09a1d5bc65070e6b336&q=yellow+flowers&image_type=photo
 
 export class App extends Component {
   state = {
@@ -29,7 +24,7 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchQuery !== this.state.searchQuery) {
-      this.fetchImages();
+      this.fetchImagesApi();
     }
   }
 
@@ -41,7 +36,7 @@ export class App extends Component {
     this.setState({ searchQuery: query, currentPage: 1, images: [] });
   };
 
-  fetchImages = () => {
+  fetchImagesApi = () => {
     const { currentPage, searchQuery } = this.state;
 
     this.setState({ isLoading: true });
@@ -51,7 +46,7 @@ export class App extends Component {
       currentPage,
     };
     fetchImagesApi
-      .fetchImages(options)
+      .fetchImagesApi(options)
       .then((data) => {
         this.setState((prevState) => ({
           images: [...prevState.images, ...data],
@@ -82,7 +77,7 @@ export class App extends Component {
   render() {
     const { images, showModal, largeImageURL, isLoading } = this.state;
     return (
-      <div className="App">
+      <div className={css.App}>
         <Container>
           {showModal && (
             <Modal onClose={this.toggleModal} largeImageURL={largeImageURL} />

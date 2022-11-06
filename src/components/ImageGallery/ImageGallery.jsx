@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//components
+import css from "./ImageGallery.module.css";
 import {ImageGalleryItem} from "../ImageGalleryItem/ImageGalleryItem";
 
 export class ImageGallery extends Component {
@@ -14,7 +14,7 @@ export class ImageGallery extends Component {
   render() {
     const { images } = this.props;
     return (
-      <ul className="ImageGallery" id="imagesList">
+      <ul className={css.ImageGallery} id="imagesList">
         {images.map(({ id, webformatURL, largeImageURL, tags, user }) => (
           <ImageGalleryItem
             onClick={this.handleClick}

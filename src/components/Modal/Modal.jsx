@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 // import PropTypes from 'prop-types';
-// import { Test } from './Modal.styles';
+import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
 
 const modalRoot = document.querySelector("#modal");
@@ -27,8 +27,8 @@ export class Modal extends PureComponent {
   render() {
     const { largeImageURL } = this.props;
     return createPortal(
-      <div className="Overlay" onClick={this.handkeBackdropClick}>
-        <div className="Modal">
+      <div className={css.Overlay} onClick={this.handkeBackdropClick}>
+        <div className={css.Modal}>
           {this.props.children}
           <img src={largeImageURL} alt="No available" width="640" />
         </div>

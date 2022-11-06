@@ -16,5 +16,5 @@ export const fetchImagesApi = async ({ currentPage, searchQuery }) => {
       `?key=${API}&q=${searchQuery}&${params}&page=${currentPage}`,
       axios.defaults.params
     )
-    .then(response => response.data.hits);
+    .then(response => response.data);
 };

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 // import PropTypes from 'prop-types';
-// import { Test } from './Button.styles';
+import css from "./Button.module.css"
 
 export class Button extends PureComponent {
   state = {
@@ -9,7 +9,7 @@ export class Button extends PureComponent {
 
   render() {
     return (
-      <button className="ButtonWrapper" onClick={this.props.onClick}>
+      <button className={css.Button} onClick={this.props.onClick}>
         Load more...
       </button>
     );

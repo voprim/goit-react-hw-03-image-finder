@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 // import PropTypes from "prop-types";
+import css from "./ImageGalleryItem.module.css";
 
 export class ImageGalleryItem extends PureComponent {
   handleClick = (e) => {
@@ -13,14 +14,14 @@ export class ImageGalleryItem extends PureComponent {
 
     return (
       <li
-        className="ImageGalleryItem"
+        className={css.ImageGalleryItem}
         key={webformatURL}
         onClick={this.handleClick}
       >
         <img
           src={webformatURL}
           alt={tags}
-          className="ImageGalleryItem-image"
+          className={css.ImageGalleryItemImage}
           onClick={this.handleClick}
           data-large={largeImageURL}
         />
