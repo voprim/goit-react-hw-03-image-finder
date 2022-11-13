@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {ThreeDots} from "react-loader-spinner";
 
 export class Loader extends PureComponent {
@@ -24,9 +24,5 @@ export class Loader extends PureComponent {
 }
 
 Loader.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Loader.defaultProps = {
-  // bla: 'test',
+  hasError: PropTypes.bool,
 };

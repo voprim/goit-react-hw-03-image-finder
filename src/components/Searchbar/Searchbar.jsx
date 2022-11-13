@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from "./Searchbar.module.css";
 
 export class Searchbar extends PureComponent {
@@ -41,9 +41,6 @@ export class Searchbar extends PureComponent {
 }
 
 Searchbar.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Searchbar.defaultProps = {
-  // bla: 'test',
+  query: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import css from "./App.module.css";
 
-import {fetchImagesApi} from "../services/images-api";
+import { fetchImagesApi } from "../services/images-api";
 
 import {Container} from "./Container/Container";
 import {Searchbar} from "./Searchbar/Searchbar";
@@ -22,9 +22,9 @@ export class App extends Component {
     currentPage: 1,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (prevState.searchQuery !== this.state.searchQuery) {
-      this.fetchImagesApi();
+      this.fetchImages();
     }
   }
 
@@ -36,31 +36,23 @@ export class App extends Component {
     this.setState({ searchQuery: query, currentPage: 1, images: [] });
   };
 
-  fetchImagesApi = () => {
+  fetchImages = () => {
     const { currentPage, searchQuery } = this.state;
-
     this.setState({ isLoading: true });
 
-    const options = {
-      searchQuery,
-      currentPage,
-    };
-    fetchImagesApi
-      .fetchImagesApi(options)
+    fetchImagesApi(currentPage, searchQuery)
       .then((data) => {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
           images: [...prevState.images, ...data],
           currentPage: prevState.currentPage + 1,
           error: "",
-        }));
+        }))
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error);
+      })
       .finally(() => {
         this.setState({ isLoading: false });
-        window.scrollTo({
-          top: document.querySelector("#imagesList").scrollHeight,
-          behavior: "smooth",
-        });
       });
   };
 

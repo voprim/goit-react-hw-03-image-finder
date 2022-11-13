@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import css from "./ImageGalleryItem.module.css";
 
 export class ImageGalleryItem extends PureComponent {
@@ -31,9 +31,6 @@ export class ImageGalleryItem extends PureComponent {
 }
 
 ImageGalleryItem.propTypes = {
-  // bla: PropTypes.string,
-};
-
-ImageGalleryItem.defaultProps = {
-  // bla: 'test',
+  handleLargeURLImage: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

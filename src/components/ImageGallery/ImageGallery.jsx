@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import css from "./ImageGallery.module.css";
 import {ImageGalleryItem} from "../ImageGalleryItem/ImageGalleryItem";
 
 export class ImageGallery extends Component {
   handleClick = (e) => {
-    // console.log(e.currentTarget);
-    // console.log(e.target);
     console.log("gallery click");
   };
   handleLargeURLImage = (data) => {
@@ -31,9 +30,5 @@ export class ImageGallery extends Component {
 }
 
 ImageGallery.propTypes = {
-  // bla: PropTypes.string,
-};
-
-ImageGallery.defaultProps = {
-  // bla: 'test',
+  handleLargeURLImage: PropTypes.func.isRequired,
 };

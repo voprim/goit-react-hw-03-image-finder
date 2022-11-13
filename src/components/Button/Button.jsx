@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from "./Button.module.css"
 
 export class Button extends PureComponent {
@@ -17,9 +17,5 @@ export class Button extends PureComponent {
 }
 
 Button.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Button.defaultProps = {
-  // bla: 'test',
+  hasError: PropTypes.bool,
 };

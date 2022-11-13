@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
 
@@ -19,7 +19,7 @@ export class Modal extends PureComponent {
       this.props.onClose();
     }
   };
-  handkeBackdropClick = (e) => {
+  handleBackdropClick = (e) => {
     if (e.currentTarget === e.target) {
       this.props.onClose();
     }
@@ -27,7 +27,7 @@ export class Modal extends PureComponent {
   render() {
     const { largeImageURL } = this.props;
     return createPortal(
-      <div className={css.Overlay} onClick={this.handkeBackdropClick}>
+      <div className={css.Overlay} onClick={this.handleBackdropClick}>
         <div className={css.Modal}>
           {this.props.children}
           <img src={largeImageURL} alt="No available" width="640" />
@@ -39,9 +39,5 @@ export class Modal extends PureComponent {
 }
 
 Modal.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Modal.defaultProps = {
-  // bla: 'test',
+  onClose: PropTypes.func.isRequired,
 };
