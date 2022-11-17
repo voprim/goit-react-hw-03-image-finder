@@ -32,5 +32,5 @@ export class ImageGalleryItem extends PureComponent {
 
 ImageGalleryItem.propTypes = {
   handleLargeURLImage: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  //handleClick: PropTypes.func.isRequired,
 };

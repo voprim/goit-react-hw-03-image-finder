@@ -20,6 +20,9 @@ export class App extends Component {
     error: null,
     showModal: false,
     currentPage: 1,
+    showLoadMore: false,
+    imagesOnPage: 0,
+    totalImages: 0,
   };
 
   componentDidUpdate(_, prevState) {
@@ -37,14 +40,15 @@ export class App extends Component {
   };
 
   fetchImages = () => {
-    const { currentPage, searchQuery } = this.state;
+    const { currentPage, searchQuery, showLoadMore, totalImages } = this.state;
     this.setState({ isLoading: true });
 
-    fetchImagesApi(currentPage, searchQuery)
+    fetchImagesApi(currentPage, searchQuery, showLoadMore, totalImages)
       .then((data) => {
         this.setState(prevState => ({
           images: [...prevState.images, ...data],
           currentPage: prevState.currentPage + 1,
+          showLoadMore: currentPage < Math.ceil([...prevState.images, ...data].length/15),
           error: "",
         }))
       })
@@ -67,7 +71,7 @@ export class App extends Component {
   };
 
   render() {
-    const { images, showModal, largeImageURL, isLoading } = this.state;
+    const { images, showModal, largeImageURL, isLoading, showLoadMore } = this.state;
     return (
       <div className={css.App}>
         <Container>
@@ -87,7 +91,7 @@ export class App extends Component {
           {isLoading ? (
             <Loader />
           ) : (
-            images.length > 0 && <Button onClick={this.fetchImages} />
+              showLoadMore && (<Button onClick={this.fetchImages} />) 
           )}
         </Container>
       </div>
