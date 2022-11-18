@@ -26,7 +26,8 @@ export class App extends Component {
   };
 
   componentDidUpdate(_, prevState) {
-    if (prevState.searchQuery !== this.state.searchQuery) {
+    if (prevState.searchQuery !== this.state.searchQuery ||
+      prevState.currentPage !== this.state.currentPage) {
       this.fetchImages();
     }
   }
@@ -47,7 +48,6 @@ export class App extends Component {
       .then((data) => {
         this.setState(prevState => ({
           images: [...prevState.images, ...data],
-          currentPage: prevState.currentPage + 1,
           showLoadMore: currentPage < Math.ceil([...prevState.images, ...data].length/15),
           error: "",
         }))
@@ -68,6 +68,10 @@ export class App extends Component {
   handleLargeURLImage = (data) => {
     this.setState({ largeImageURL: data });
     this.setState({ showModal: true });
+  };
+
+  onNextFetch = () => {
+    this.setState(({ currentPage }) => ({ currentPage: currentPage + 1 }));
   };
 
   render() {
@@ -91,7 +95,7 @@ export class App extends Component {
           {isLoading ? (
             <Loader />
           ) : (
-              showLoadMore && (<Button onClick={this.fetchImages} />) 
+              showLoadMore && (<Button onClick={this.onNextFetch} />) 
           )}
         </Container>
       </div>
